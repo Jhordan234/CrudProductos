@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroStock Pro - Gestión de Inventario</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <i class="fas fa-microchip"></i>
+            <span>ElectroStock Pro</span>
+        </div>
+        <div class="header-stats">
+            <div class="stat-item">
+                <span class="stat-value" id="total-productos">0</span>
+                <span class="stat-label">Productos</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="total-stock">0</span>
+                <span class="stat-label">Stock Total</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value" id="bajo-stock">0</span>
+                <span class="stat-label">Bajo Stock</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Action Bar -->
+        <div class="action-bar">
+            <div class="search-container">
+                <input type="text" id="search-input" class="search-input" placeholder="Buscar productos...">
+                <select id="category-filter" class="filter-select">
+                    <option value="">Todas las categorías</option>
+                    <option value="smartphones">Smartphones</option>
+                    <option value="laptops">Laptops</option>
+                    <option value="tablets">Tablets</option>
+                    <option value="accesorios">Accesorios</option>
+                    <option value="audio">Audio</option>
+                    <option value="gaming">Gaming</option>
+                    <option value="tv">TV y Video</option>
+                </select>
+            </div>
+            <button class="btn btn-primary" onclick="abrirModal('crear')">
+                <i class="fas fa-plus"></i>
+                Agregar Producto
+            </button>
+        </div>
+
+        <!-- Products Grid -->
+        <div id="productos-container">
+            <div class="loading">
+                <i class="fas fa-spinner"></i>
+                <p>Cargando productos...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para Crear/Editar Producto -->
+    <div id="producto-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title">Agregar Producto</h2>
+            </div>
+            <form id="producto-form" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="form-label" for="nombre">Nombre del Producto *</label>
+                        <input type="text" id="nombre" name="nombre" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="descripcion">Descripción</label>
+                        <textarea id="descripcion" name="descripcion" class="form-textarea" placeholder="Describe las características principales del producto"></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="precio">Precio *</label>
+                            <input type="number" id="precio" name="precio" class="form-input" step="0.01" min="0" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="stock">Stock *</label>
+                            <input type="number" id="stock" name="stock" class="form-input" min="0" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="categoria">Categoría</label>
+                            <select id="categoria" name="categoria" class="form-select">
+                                <option value="">Seleccionar categoría</option>
+                                <option value="smartphones">Smartphones</option>
+                                <option value="laptops">Laptops</option>
+                                <option value="tablets">Tablets</option>
+                                <option value="accesorios">Accesorios</option>
+                                <option value="audio">Audio</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="tv">TV y Video</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="marca">Marca</label>
+                            <input type="text" id="marca" name="marca" class="form-input" placeholder="Ej: Apple, Samsung, etc.">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="modelo">Modelo</label>
+                        <input type="text" id="modelo" name="modelo" class="form-input" placeholder="Ej: iPhone 15, Galaxy S24, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="imagen">Imagen del Producto</label>
+                        <input type="file" id="imagen" name="imagen" class="form-input" accept="image/*">
+                        <input type="hidden" id="imagenActual" name="imagenActual">
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="cerrarModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="submit-btn">
+                        <i class="fas fa-save"></i>
+                        Guardar
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="/js/index.js"></script>
+</body>
+</html>
