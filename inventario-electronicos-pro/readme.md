@@ -319,7 +319,7 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 ## 👨‍💻 Autor
 
 **Robyn Jhordan Gonzalo**
-- GitHub: [@tu-usuario](Jhordan234)
+- GitHub: https://github.com/Jhordan234
 - Email: robyngonzalotarazona@gmail.com
 
 ## 🙏 Agradecimientos
